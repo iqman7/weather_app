@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample</title>
+    <link rel="stylesheet" href ="style1.css">
+</head>
+<body>
+    <div class = "box">
+        <input type="text" placeholder = "Enter your name " spellcheck="false">
+        <button>Submit</button>
+    </div>
+    <div>
+        <div class = "city_name">New York</div>
+        <div class ="temp">22 *C</div>
+    </div>
+    
+    <script>
+
+        // const apiKey = "";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?appid=a56f6a793278778b3fdedd055cf1bfb2&units=metric&q=";
+
+
+        const name = document.querySelector(".box input");
+        const button = document.querySelector(".box button");
+
+        async function checkWeather(name){
+            const response = await fetch(apiUrl + name);
+            var data = await response.json();
+            console.log(data);
+
+            document.querySelector(".city_name").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = data.main.temp + " *C";
+
+
+
+        }
+        
+        button.addEventListener("click", ()=> {
+            checkWeather(name.value)}
+        );
+        // console.log(name.value);
+
+    </script>
+</body>
+</html>
